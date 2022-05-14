@@ -18,6 +18,14 @@ function createMap(position) {
         tileSize: 512,
         zoomOffset: -1
     }).addTo(map);
+
+    fetch("http://localhost:3000/posts").then(result => {
+        return result.json();
+    }).then(result => {
+        for (var i = 0; i < result.length; i++) {
+            L.marker({lat: result[i].lat, lng: result[i].lng}).addTo(map);
+        }
+    })
 }
 
 map.on('click', function(e) {
@@ -89,5 +97,8 @@ $('#spotForm').on('submit', function(e) {
     //     data: data
     // });
     $.post(url, data);
+
+    $('#lat').val("");
+    $('#lng').val("");
 });
 
