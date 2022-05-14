@@ -3,6 +3,9 @@ var map = L.map('map');
 var tiles;
 var lokacija;
 
+var username = "";
+var password = "";
+
 var coor = {};
 
 navigator.geolocation.getCurrentPosition(createMap);
@@ -48,7 +51,7 @@ $("#cpy-btn").on("click", function(e) {
     $("#lat").val(coor.lat);
     $("#lng").val(coor.lng);
 });
-
+ 
 $( "#closeLoginModal" ).click(function() {
     $('#LoginModal').modal('hide');
 });
@@ -60,12 +63,14 @@ $( "#closeRegisterModal" ).click(function() {
 $('#login').on('submit', function(e) {
     e.preventDefault();
     url=""
-    data = {"username": $('#usernameLogin').val(),"password": $('#passwordLogin').val()};
-    $.ajax({
-        type: "POST",
-        url: url,
-        data: data
-    });
+    // data = {"username": $('#usernameLogin').val(),"password": $('#passwordLogin').val()};
+    // $.post(url, data);
+
+    username = $('#usernameLogin').val();
+    password = $('#passwordLogin').val();
+
+    $('#user').html(username);
+    $('#user-footer').html(username);
 
     $('#usernameLogin').val("");
     $('#passwordLogin').val("");
@@ -74,13 +79,9 @@ $('#login').on('submit', function(e) {
 
 $('#register').on('submit', function(e) {
     e.preventDefault();
-    url=""
+    url="/register"
     data = {"username": $('#usernameRegister').val(),"password": $('#passwordRegister').val()};
-    $.ajax({
-        type: "POST",
-        url: url,
-        data: data
-    });
+    $.post(url, data);
 
     $('#usernameRegister').val("");
     $('#passwordRegister').val("");
@@ -90,13 +91,11 @@ $('#register').on('submit', function(e) {
 $('#spotForm').on('submit', function(e) {
     e.preventDefault();
     url="/posts"
-    data = {"lat": $('#lat').val(),"lng": $('#lng').val(),"cleaned": false};
-    // $.ajax({
-    //     type: "POST",
-    //     url: url,
-    //     data: data
-    // });
+    data = {"lat": $('#lat').val(),"lng": $('#lng').val(),"cleaned": false, "username" : username, "password" : password};
     $.post(url, data);
+
+    console.log(username);
+    console.log(password);
 
     $('#lat').val("");
     $('#lng').val("");
