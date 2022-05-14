@@ -10,32 +10,14 @@ require("dotenv/config");
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors());
 
-//Middlewares - functions that run when we go on a specified route
-// app.use("/posts", () => {
-//     console.log("This is a middleware running");
-// })
-
-
-//ROUTES 
 
 app.use(express.static('public'));
-//ROUTES 
+
+//ROUTES
 app.get("/", (req, res) => { 
     res.render('index');
 })
 
-
-
-// app.get("/", (req, res) => { 
-//     res.send("We are on home");
-// })
-
-// --- to smo premaknili v posts.js da je bl pregledno
-// app.get("/posts", (req, res) => {
-//     res.send("We are on posts");
-// })
-
-//Namest zgornjega naredimo vse v posts.js in to:
 //Import routes
 const postsRoute = require("./routes/posts");
 app.use("/posts", postsRoute);

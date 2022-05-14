@@ -29,9 +29,11 @@ router.get("/", async (req, res) => {
 router.post("/", async (req,res) => {
     console.log(req.body.lng);
     const post = new Post({
-        lng: req.body.lng,
         lat: req.body.lat,
+        lng: req.body.lng,
         status: req.body.status,
+        username: req.body.username,
+        password: req.body.password,
         // description: req.body.description,
         date: req.body.date
     });

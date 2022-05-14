@@ -8,6 +8,8 @@ var password = "";
 
 var coor = {};
 
+var points = 0;
+
 navigator.geolocation.getCurrentPosition(createMap);
 
 function createMap(position) {
@@ -72,6 +74,17 @@ $('#login').on('submit', function(e) {
     $('#user').html(username);
     $('#user-footer').html(username);
 
+    points = 0;
+    fetch("http://localhost:3000/posts").then(result => {
+        return result.json();
+    }).then(result => {
+        for (var i = 0; i < result.length; i++) {
+            if (username === result[i].username) 
+                points++;
+        }
+        $('#points').html(points);
+    });
+
     $('#usernameLogin').val("");
     $('#passwordLogin').val("");
     $('#LoginModal').modal('hide');
@@ -91,11 +104,16 @@ $('#register').on('submit', function(e) {
 $('#spotForm').on('submit', function(e) {
     e.preventDefault();
     url="/posts"
-    data = {"lat": $('#lat').val(),"lng": $('#lng').val(),"cleaned": false, "username" : username, "password" : password};
+    data = {"lat": $('#lat').val(),"lng": $('#lng').val(),"status": true, "username" : username, "password" : password};
     $.post(url, data);
 
     console.log(username);
     console.log(password);
+
+    if(username != null){
+        points++;
+        $('#points').html(points);
+    }
 
     $('#lat').val("");
     $('#lng').val("");

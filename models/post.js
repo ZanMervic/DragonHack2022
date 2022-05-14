@@ -20,6 +20,12 @@ const PostSchema = mongoose.Schema({
     //     type: String,
     //     default: "/"
     // },
+    username: {
+        type: String
+    },
+    password: {
+        type: String
+    },
     date: {
         type: Date,
         default: Date.now
