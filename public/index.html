@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="Trashman" />
+        <title>Trashman</title>
+        <!-- Favicon-->
+        <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+        <!-- Font Awesome icons (free version)-->
+        <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
+        <!-- Google fonts-->
+        <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css" />
+        <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css" />
+        <!-- Core theme CSS (includes Bootstrap)-->
+
+        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.8.0/dist/leaflet.css"
+        integrity="sha512-hoalWLoI8r4UszCkZ5kL8vayOGVae1oxXe/2A4AO6J9+580uKHDO3JdHb7NzwwzK5xr/Fs0W40kiNHxM9vyTtQ=="
+        crossorigin=""/>
+
+        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.4.0/dist/leaflet.css"/>
+        <link rel="stylesheet" type="text/css" href="./css/index.css">
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+        <link href="css/styles.css" rel="stylesheet" />
+    </head>
+    <body id="page-top">
+        <!-- Navigation-->
+        <nav class="navbar navbar-expand-lg bg-secondary text-uppercase fixed-top" id="mainNav">
+            <div class="container">
+                <a class="navbar-brand" href="#page-top">Trashman</a>
+                <button class="navbar-toggler text-uppercase font-weight-bold bg-primary text-white rounded" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                    Menu
+                    <i class="fas fa-bars"></i>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarResponsive">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="#trashmap">Trashmap</a></li>                  
+                        <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="#about">About</a></li>
+                        <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="#form">Form</a></li>
+
+                        <li class="nav-item mx-0 mx-lg-1"><a type="button" class="nav-link py-3 px-0 px-lg-3 rounded" data-bs-toggle="modal" data-bs-target="#LoginModal">Login</a></li>
+                        <li class="nav-item mx-0 mx-lg-1"><a type="button" class="nav-link py-3 px-0 px-lg-3 rounded" data-bs-toggle="modal" data-bs-target="#RegisterModal">Register</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Login -->
+        <div id="LoginModal" class="modal fade">
+            <div class="modal-dialog modal-login">
+                <div class="modal-content">
+                    <form id="login" action="#" method="post">
+                        <div class="modal-header">              
+                            <h4 class="modal-title">Login</h4>
+                            <button type="button" id="closeLoginModal" class="btn-close" data-dismiss="modal"></button>
+                        </div>
+                        <div class="modal-body">                
+                            <div class="form-group">
+                                <label>Username</label>
+                                <input id="usernameLogin" type="text" class="form-control" required="required">
+                            </div>
+                            <div class="form-group">
+                                <div class="clearfix">
+                                    <label>Password</label>
+                                </div>
+                                
+                                <input id="passwordLogin" type="password" class="form-control" required="required">
+                            </div>
+                        </div>
+                        <div class="modal-footer justify-content-between">
+                            <input type="submit" class="btn btn-primary" value="Login">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- Register -->
+        <div id="RegisterModal" class="modal fade">
+            <div class="modal-dialog modal-login">
+                <div class="modal-content">
+                    <form id="register" action="#" method="post">
+                        <div class="modal-header">              
+                            <h4 class="modal-title">Register</h4>
+                            <button type="button" id="closeRegisterModal" class="btn-close" data-dismiss="modal"></button>
+                        </div>
+                        <div class="modal-body">                
+                            <div class="form-group">
+                                <label>Username</label>
+                                <input id="usernameRegister" type="text" class="form-control" required="required">
+                            </div>
+                            <div class="form-group">
+                                <div class="clearfix">
+                                    <label>Password</label>
+                                </div>
+                                
+                                <input id="passwordRegister" type="password" class="form-control" required="required">
+                            </div>
+                        </div>
+                        <div class="modal-footer justify-content-between">
+                            <input type="submit" class="btn btn-primary" value="Register">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- Masthead-->
+        <header class="masthead bg-primary text-white text-center">
+            <div class="container d-flex align-items-center flex-column">
+                <img class="masthead-avatar mb-5" src="assets/img/avataaars.svg" alt="trashman" />
+                <h1 class="masthead-heading text-uppercase mb-0">Trashman</h1>
+                <!-- Icon Divider-->
+                <div class="divider-custom divider-light">
+                    <div class="divider-custom-line"></div>
+                    <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
+                    <div class="divider-custom-line"></div>
+                </div>
+                <p class="masthead-subheading font-weight-light mb-0">For a cleaner environment!</p>
+            </div>
+        </header>
+
+        <!-- Trashmap Section-->
+        <section class="page-section portfolio" id="trashmap">
+            <div class="container">
+                <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">Trashmap</h2>
+                <!-- Icon Divider-->
+                <div class="divider-custom">
+                    <div class="divider-custom-line"></div>
+                    <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
+                    <div class="divider-custom-line"></div>
+                </div>
+
+                <div id="map"></div>
+                <a class="btn btn-xl cpy-btn" id="cpy-btn" href="#form" style="background-color: #F0F0F0; color: black; pointer-events: none;" disabled>
+                    COPY COORDINATES
+                </a>
+                
+            </div>
+        </section>
+
+        <!-- About Section-->
+        <section class="page-section bg-primary text-white mb-0" id="about">
+            <div class="container">
+                <h2 class="page-section-heading text-center text-uppercase text-white">About</h2>
+                
+                <div class="divider-custom divider-light">
+                    <div class="divider-custom-line"></div>
+                    <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
+                    <div class="divider-custom-line"></div>
+                </div>
+                
+                <div class="row">
+                    <div class="col-lg-4 ms-auto"><p class="lead">Creating app for tomorrow. Have you ever been walking in nature and instead of being inspired you have walked up to a bunch of trash. So today we are finaly able to
+                        offer you the solution. We made an app where you can report wild dupms and a community of users will help the environment by cleaning them.</p></div>
+                    <div class="col-lg-4 me-auto"><p class="lead">To make thing more interesting 
+                        every time you report a new wild dump you will be rewarded with pointts which will rank you compared to other users. Join us on a path to a cleaner comunity.</p></div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Form Section-->
+        <section class="page-section" id="form">
+            <div class="container">
+                <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">Trashspot form</h2>
+                <!-- Icon Divider-->
+                <div class="divider-custom">
+                    <div class="divider-custom-line"></div>
+                    <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
+                    <div class="divider-custom-line"></div>
+                </div>
+
+                <!-- Contact Section Form-->
+                <div class="row justify-content-center">
+                    <div class="col-lg-8 col-xl-7">
+                       
+                        <form id="spotForm" action="#" method="post">
+                            <!-- Lat input-->
+                            <div class="form-floating mb-3">
+                                <input class="form-control" id="lat" type="text" placeholder="Enter latitude" />
+                                <label for="name">Latitude</label>
+                            </div>
+                            <!-- Lon input-->
+                            <div class="form-floating mb-3">
+                                <input class="form-control" id="lng" type="text" placeholder="Enter longitude" />
+                                <label for="name">Longitude</label>
+                            </div>
+                            
+                            <div class="d-none" id="submitSuccessMessage">
+                                <div class="text-center mb-3">
+                                    <div class="fw-bolder">Form submission successful!</div>
+                                </div>
+                            </div>
+                            
+                            <div class="d-none" id="submitErrcorMessage"><div class="text-center text-danger mb-3">Error sending message!</div></div>
+                            <!-- Submit Button-->
+                            <button class="btn btn-primary btn-xl" id="submitButton" type="submit">Send</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer-->
+        <footer class="footer text-center">
+            <div class="container">
+                <div class="row">
+                    
+                    <div class="col-lg-4 mb-5 mb-lg-0">
+                        <h4 class="text-uppercase mb-4">Points</h4>
+                        <p class="lead mb-0">
+                            Johny Depp<br />
+                            100pts
+                        </p>
+                    </div>
+                    <div class="col-lg-4 mb-5 mb-lg-0">
+                        <!--<h4 class="text-uppercase mb-4">Around the Web</h4>
+                        <a class="btn btn-outline-light btn-social mx-1" href="#!"><i class="fab fa-fw fa-facebook-f"></i></a>
+                        <a class="btn btn-outline-light btn-social mx-1" href="#!"><i class="fab fa-fw fa-twitter"></i></a>
+                        <a class="btn btn-outline-light btn-social mx-1" href="#!"><i class="fab fa-fw fa-linkedin-in"></i></a>
+                        <a class="btn btn-outline-light btn-social mx-1" href="#!"><i class="fab fa-fw fa-dribbble"></i></a>-->
+                    </div>
+                    
+                    <div class="col-lg-4">
+                        <h4 class="text-uppercase mb-4">Trashman</h4>
+                        <p class="lead mb-0">
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit.        .
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </footer>
+        
+        <div class="copyright py-4 text-center text-white">
+            <div class="container"><small>Copyright &copy; Trashman 2022</small></div>
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="js/scripts.js"></script>
+        <!--overleaf-->
+        <script src="https://unpkg.com/leaflet@1.8.0/dist/leaflet.js"
+        integrity="sha512-BB3hKbKWOc9Ez/TAwyWxNXeoV9c1v6FIeYiBieIWkpLjauysF18NzgR1MBNBXf8/KABdlkX68nAhlwcDFLGPCQ=="
+        crossorigin=""></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <script src="js/index.js"></script>
+        <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    </body>
+</html>
