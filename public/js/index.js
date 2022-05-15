@@ -31,6 +31,41 @@ var redIcon = new L.Icon({
 
 
 
+//leaderboard
+var userPoints = {};
+$( document ).ready(function() {
+    fetch("http://localhost:3000/users").then(result => {
+        return result.json();
+    }).then(result => {
+ 
+        for (var i = 0; i < result.length; i++) {
+            u = result[i].username;
+            userPoints[u] = (result[i].points);
+        }
+        
+        var max = -1;
+        var maxKey;
+
+        console.log(userPoints);
+        for (var key of Object.keys(userPoints)) {
+            for (var key of Object.keys(userPoints)) {
+                if (userPoints[key] > max) {
+                    max = userPoints[key];
+                    maxKey = key;
+                }
+            }
+            $("#leaderboard").append('<li id="leader" class="leader">' + maxKey + ', <span id="leader-points">' + max + ' pts</span></li>');
+            
+            userPoints[maxKey] = undefined;
+
+            maxKey = "";
+            max = -1;
+        }
+    });
+});
+
+
+
 navigator.geolocation.getCurrentPosition(createMap);
 
 function createMap(position) {

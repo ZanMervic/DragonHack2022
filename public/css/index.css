@@ -13,3 +13,11 @@
 .user {
   margin-top: 7px;
 }
+
+.leader {
+  list-style-type: none !important;
+}
+
+.leaderboard {
+  padding-left: 0 !important;
+}
