@@ -1,0 +1,2 @@
+Creating app for tomorrow. Have you ever been walking in nature and instead of being inspired you have walked up to a bunch of trash. So today we are finaly able to offer you the solution. We made an app where you can report wild dupms and a community of users will help the environment by cleaning them.
+To make thing more interesting every time you report a new wild dump you will be rewarded with pointts which will rank you compared to other users. Join us on a path to a cleaner comunity.
