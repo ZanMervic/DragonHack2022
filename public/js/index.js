@@ -63,6 +63,7 @@ $( "#closeRegisterModal" ).click(function() {
     $('#RegisterModal').modal('hide');
 });
 
+//Login
 $('#login').on('submit', function(e) {
     e.preventDefault();
     url=""
@@ -74,23 +75,29 @@ $('#login').on('submit', function(e) {
     password = $('#passwordLogin').val();
 
 
+    validUsername = false;
     fetch("http://localhost:3000/users").then(result => {
         return result.json();
     }).then(result => {
         for (var i = 0; i < result.length; i++) {
             if (username === result[i].username){
+                found = true;
                 if(password === result[i].password){
                     $('#user').html(username);
                     $('#user-footer').html(username);
                     points = result[i].points;
+                    validUsername = true;
                 }
                 else{
                     alert("Wrong username and password combination");
                 }
             }
         }
+        if(!validUsername)
+            alert("Username does not exist");
         $('#points').html(points);
     });
+
 
 
     $('#usernameLogin').val("");
@@ -98,6 +105,7 @@ $('#login').on('submit', function(e) {
     $('#LoginModal').modal('hide');
 });
 
+//Registration
 $('#register').on('submit', function(e) {
     e.preventDefault();
     url="/users"
@@ -109,6 +117,7 @@ $('#register').on('submit', function(e) {
     $('#RegisterModal').modal('hide');
 });
 
+//Submitting coordinates
 $('#spotForm').on('submit', function(e) {
     e.preventDefault();
     url="/posts"
