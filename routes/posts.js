@@ -27,7 +27,6 @@ router.get("/", async (req, res) => {
 
 //tle sprejemamo POST requeste in jih posiljamo v DB ------ to bomo mi rabili
 router.post("/", async (req,res) => {
-    console.log(req.body.lng);
     const post = new Post({
         lat: req.body.lat,
         lng: req.body.lng,

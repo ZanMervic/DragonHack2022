@@ -115,7 +115,6 @@ $('#register').on('submit', function(e) {
     fetch("http://localhost:3000/users").then(result => {
         return result.json();
     }).then(result => {
-
         for(var i = 0; i<result.length; i++){
             if(data.username === result[i].username){
                 usernameTaken = true;
@@ -124,10 +123,12 @@ $('#register').on('submit', function(e) {
             }   
         }
 
+        if(!usernameTaken){
+            $.post(url, data);
+        }
+
     });
 
-    if(!usernameTaken)
-        $.post(url, data);
 
     $('#usernameRegister').val("");
     $('#passwordRegister').val("");

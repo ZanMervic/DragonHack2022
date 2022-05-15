@@ -56,7 +56,6 @@ router.delete("/:postId", async (req,res) => {
 //Update a post
 router.patch("/:postUsername", async (req,res) => {
     try{
-        console.log(req.params.postUsername);
         const updatedPost = await Post.updateOne(
             {username: req.params.postUsername}, 
             { $set : { points: req.body.points }});
