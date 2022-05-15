@@ -110,7 +110,24 @@ $('#register').on('submit', function(e) {
     e.preventDefault();
     url="/users"
     data = {"username": $('#usernameRegister').val(),"password": $('#passwordRegister').val()};
-    $.post(url, data);
+
+    usernameTaken = false;
+    fetch("http://localhost:3000/users").then(result => {
+        return result.json();
+    }).then(result => {
+
+        for(var i = 0; i<result.length; i++){
+            if(data.username === result[i].username){
+                usernameTaken = true;
+                alert("Username is already taken.");
+                break;
+            }   
+        }
+
+    });
+
+    if(!usernameTaken)
+        $.post(url, data);
 
     $('#usernameRegister').val("");
     $('#passwordRegister').val("");
