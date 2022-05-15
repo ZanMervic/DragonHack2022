@@ -23,9 +23,6 @@ const PostSchema = mongoose.Schema({
     username: {
         type: String
     },
-    password: {
-        type: String
-    },
     date: {
         type: Date,
         default: Date.now

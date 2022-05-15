@@ -54,15 +54,16 @@ router.delete("/:postId", async (req,res) => {
 
 
 //Update a post
-// router.patch("/:postId", async (req,res) => {
-//     try{
-//         const updatedPost = await Post.updateOne(
-//             {_id: req.params.postId}, 
-//             { $set : { status: req.body.status }});
-//         res.json(updatedPost);
-//     }catch(err){
-//         res.json({message: err});
-//     }
-// })
+router.patch("/:postUsername", async (req,res) => {
+    try{
+        console.log(req.params.postUsername);
+        const updatedPost = await Post.updateOne(
+            {username: req.params.postUsername}, 
+            { $set : { points: req.body.points }});
+        res.json(updatedPost);
+    }catch(err){
+        res.json({message: err});
+    }
+})
 
 module.exports = router;

@@ -33,7 +33,6 @@ router.post("/", async (req,res) => {
         lng: req.body.lng,
         status: req.body.status,
         username: req.body.username,
-        password: req.body.password,
         // description: req.body.description,
         date: req.body.date
     });

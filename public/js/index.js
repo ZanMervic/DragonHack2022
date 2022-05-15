@@ -5,10 +5,11 @@ var lokacija;
 
 var username = "";
 var password = "";
+var points = 0;
 
 var coor = {};
 
-var points = 0;
+
 
 navigator.geolocation.getCurrentPosition(createMap);
 
@@ -68,22 +69,29 @@ $('#login').on('submit', function(e) {
     // data = {"username": $('#usernameLogin').val(),"password": $('#passwordLogin').val()};
     // $.post(url, data);
 
+
     username = $('#usernameLogin').val();
     password = $('#passwordLogin').val();
 
-    $('#user').html(username);
-    $('#user-footer').html(username);
 
-    points = 0;
-    fetch("http://localhost:3000/posts").then(result => {
+    fetch("http://localhost:3000/users").then(result => {
         return result.json();
     }).then(result => {
         for (var i = 0; i < result.length; i++) {
-            if (username === result[i].username) 
-                points++;
+            if (username === result[i].username){
+                if(password === result[i].password){
+                    $('#user').html(username);
+                    $('#user-footer').html(username);
+                    points = result[i].points;
+                }
+                else{
+                    alert("Wrong username and password combination");
+                }
+            }
         }
         $('#points').html(points);
     });
+
 
     $('#usernameLogin').val("");
     $('#passwordLogin').val("");
@@ -92,7 +100,7 @@ $('#login').on('submit', function(e) {
 
 $('#register').on('submit', function(e) {
     e.preventDefault();
-    url="/register"
+    url="/users"
     data = {"username": $('#usernameRegister').val(),"password": $('#passwordRegister').val()};
     $.post(url, data);
 
@@ -104,14 +112,27 @@ $('#register').on('submit', function(e) {
 $('#spotForm').on('submit', function(e) {
     e.preventDefault();
     url="/posts"
-    data = {"lat": $('#lat').val(),"lng": $('#lng').val(),"status": true, "username" : username, "password" : password};
+    data = {"lat": $('#lat').val(),"lng": $('#lng').val(),"status": true, "username" : username};
     $.post(url, data);
 
-    console.log(username);
-    console.log(password);
+    //to je nrdu zan
+
+    var patch = {
+        "points" : ++points
+    }
+    
+    $.ajax({
+       type: 'PATCH',
+       url: "/users/" + username,
+       data: patch
+    //    processData: false,
+    //    contentType: 'application/merge-patch+json',
+    
+       /* success and error handling omitted for brevity */
+    });
+
 
     if(username != null){
-        points++;
         $('#points').html(points);
     }
 
